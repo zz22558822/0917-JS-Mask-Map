@@ -1,0 +1,19 @@
+/* TOP按鈕 */
+$top-btn-color: orange;
+
+@mixin top-btn($top-btn-color) {
+    .top-btn i{
+        position: fixed;
+        bottom: 3%;
+        right: 1.5%;
+        font-size: 500%;
+        color: $top-btn-color;
+        opacity: 0.6;
+        transition: all 0.5s;
+        z-index: 100;
+    }
+    .top-btn i:hover{
+        color: orangered;
+        transition: all 0.5s;
+    }
+}

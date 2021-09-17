@@ -1,0 +1,64 @@
+/*水平置中效果*/
+@mixin horizontal-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hover下底線效果 */
+$hover-border-color: #00cc99;
+@mixin hover-border($hover-border-color) {
+    background-image: linear-gradient($hover-border-color, $hover-border-color);
+    background-position: left bottom;
+    background-size: 0 4px;
+    background-repeat: no-repeat;
+    transition: background-size 0.18s linear;
+}
+
+/*圖片取代文字技巧*/
+@mixin text-hidden{
+    display:block;
+    text-indent:101%; /*首行縮排*/
+    overflow:hidden; /*自動隱藏超出的文字或圖片*/
+    white-space:nowrap; /*使元素在第一排上面，不斷行*/
+}
+
+/* TOP按鈕 */
+$top-btn-color: orange;
+@mixin top-btn($top-btn-color) {
+    position: fixed;
+    bottom: 3%;
+    right: 1.5%;
+    font-size: 500%;
+    color: $top-btn-color;
+    opacity: 0.6;
+    transition: all 0.5s;
+    z-index: 100;
+    i:hover{
+        color: orangered;
+        transition: all 0.5s;
+    }
+}
+
+/* 進度條 */
+@mixin progress {
+    height: $progress-height;
+    overflow: hidden;
+    background-color: rgba(#fafafa, .45);
+    border-radius: 3px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    position: relative;
+}
+@mixin progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    font-size: 12px;
+    line-height: $progress-height;
+    color: #fff;
+    text-align: center;
+    background-color: $brand-accent;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+    transition: width 1s ease;
+}

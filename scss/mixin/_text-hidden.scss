@@ -1,0 +1,7 @@
+/*圖片取代文字技巧*/
+@mixin text-hidden{
+    display:block;
+    text-indent:101%; /*首行縮排*/
+    overflow:hidden; /*自動隱藏超出的文字或圖片*/
+    white-space:nowrap; /*使元素在第一排上面，不斷行*/
+}

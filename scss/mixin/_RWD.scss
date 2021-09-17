@@ -1,0 +1,26 @@
+/* RWD用 */
+@mixin pad-768{
+    @media(max-width:768px){
+    @content;
+    }
+}
+@mixin mobile-414{
+    @media(max-width:414px){
+        @content;
+    }
+}
+@mixin mobile-375{
+    @media(max-width:375px){
+    @content;
+    }
+}
+@mixin mobile-767{
+    @media(max-width:767px){
+        @content;
+    }
+}
+@mixin mobile-914{
+    @media(max-width:914px){
+        @content;
+    }
+}

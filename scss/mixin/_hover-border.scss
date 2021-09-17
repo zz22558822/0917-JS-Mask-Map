@@ -1,0 +1,10 @@
+/* Hover下底線效果 */
+$hover-border-color: #00cc99;
+
+@mixin hover-border($hover-border-color) {
+    background-image: linear-gradient($hover-border-color, $hover-border-color);
+    background-position: left bottom;
+    background-size: 0 4px;
+    background-repeat: no-repeat;
+    transition: background-size 0.18s linear;
+}

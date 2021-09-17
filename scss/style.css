@@ -1,0 +1,221 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 讓圖片自適應容器最大寬度 高度自動 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 全域設定 border box */
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/*---------------------------------------*/
+/*圖片取代文字技巧*/
+/* RWD用 */
+.wrap a {
+  text-decoration: none;
+}
+
+.wrap .loading {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrap .disNone {
+  display: none;
+}
+
+.frame {
+  width: 20%;
+}
+
+.frame .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #FFF;
+  padding: 15px;
+  background: #73C0D8;
+}
+
+.frame .header .week {
+  font-size: 38px;
+}
+
+.frame .header .day-frame .day {
+  text-align: right;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.frame .header .day-frame .limit {
+  font-size: 11px;
+}
+
+.frame .header .day-frame .limit span {
+  color: yellow;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 5px;
+}
+
+.frame .flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background: #73C0D8;
+}
+
+.frame .flex .choose, .frame .flex .choose-citie {
+  width: 45%;
+  padding: 5px;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.frame .flex .disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.frame .list {
+  /* 這邊是使溢出的Y軸顯示滾動條 */
+  overflow-y: scroll;
+  /* 隱藏 scrollbar */
+}
+
+.frame .list::-webkit-scrollbar {
+  width: 0;
+}
+
+.frame .list li {
+  padding: 15px 30px;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.frame .list li .name {
+  font-size: 19px;
+  color: #333333;
+  font-weight: bold;
+}
+
+.frame .list li .text {
+  font-size: 16px;
+  color: #666666;
+  margin-top: 10px;
+}
+
+.frame .list li .maskTotal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 10px;
+}
+
+.frame .list li .maskTotal .aldult-mask, .frame .list li .maskTotal .child-mask {
+  width: 48%;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #FFF;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.frame .list li .maskTotal .aldult-mask span, .frame .list li .maskTotal .child-mask span {
+  font-size: 19px;
+}
+
+.frame .list li .maskTotal .aldult-mask {
+  background: #73C0D8;
+}
+
+.frame .list li .maskTotal .child-mask {
+  background: #FFA573;
+}
+
+.frame .list li .maskTotal .no {
+  background: #A5A5A5;
+}
+/*# sourceMappingURL=style.css.map */
