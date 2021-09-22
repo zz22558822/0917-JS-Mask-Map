@@ -4,6 +4,25 @@ var data;
 var citieData = [];
 
 
+
+
+// 暫存選項城市
+var localCity = localStorage.getItem('city');
+// 暫存選項縣市
+var localCitie = localStorage.getItem('citie');
+
+if (localCity == '' || localCity == null) {
+    localStorage.setItem('city','全部區域');
+    localCity = localStorage.getItem('city');
+};
+if (localCitie == '' || localCitie == null) {
+    localStorage.setItem('citie','全部區域');
+    localCitie = localStorage.getItem('citie');
+};
+
+
+
+
 // 獲取資料
 function getData() {
     //開啟讀取動畫
@@ -21,8 +40,20 @@ function getData() {
         // 縣市列表
         upcity();
 
-        // 預設是取得資料後選染出 全部區域
-        renderList('全部區域');
+        // 預設是取得資料後選染出 城市位置
+        renderList(localCity);
+        // 預設 城市選擇框選項
+        document.getElementById('city').selectedIndex = localStorage.getItem('city-Num');
+
+        if (localCitie == '全部區域' || localCitie == null || localCitie == '') {
+            
+        }else{
+            // 預設是取得資料後選染出 縣市位置
+            renderListCitie(localCitie)
+            // 預設 縣市選擇框選項
+            document.getElementById('citie').selectedIndex = localStorage.getItem('citie-Num');
+        }
+
 
         //關閉讀取動畫
         closeLoading();
@@ -81,6 +112,16 @@ function ifDay(day) {
 
 
 
+
+
+
+
+
+
+
+
+
+
 // 篩選城市 並渲染
 function renderList(city){
     // 空字串放置累加資料
@@ -92,6 +133,9 @@ function renderList(city){
         if ('全部區域' == city) {
             // 讓縣市的選項禁止選取
             document.querySelector('.choose-citie').classList.add('disabled')
+            // 讓localStorage 的縣市資料清空
+            localStorage.removeItem('citie-Num')
+            localStorage.removeItem('citie')
             str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
         }else if ( data[i].properties.county == city) {
             // 讓縣市的選項開放選取
@@ -126,6 +170,18 @@ function renderListCitie(citie){
     //關閉讀取動畫
     closeLoading();
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // 宣告全域 selectCity 讓兩個 function 使用 並且可以進行排錯 不然使用區域變數會比較好
@@ -171,8 +227,18 @@ function upcitie() {
         selectCity += '<option value="' + allZone[i] + '">' + allZone[i] + '</option>';
     }
     document.querySelector('.choose-citie').innerHTML = selectCity
-
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -196,12 +262,26 @@ function closeLoading() {
 
 
 
+
+
+
+
+
+
+
 // 篩選城市 切換監聽
 document.querySelector('.choose').addEventListener('change',function (e) {
     //開啟讀取動畫
     openLoading();
     //篩選城市 並渲染點擊的城市
     renderList(e.target.value);
+
+
+
+    // 使用 localStorage 儲存上次選擇區域
+    localStorage.setItem(this.id,e.target.value);
+    // 使用 localStorage 儲存上次選擇區域 selectedIndex 來預選
+    localStorage.setItem(this.id+'-Num',e.target.selectedIndex);
     
 })
 // 篩選縣市 切換監聽
@@ -210,6 +290,14 @@ document.querySelector('.choose-citie').addEventListener('change',function (e) {
     openLoading();
     //篩選縣市 並渲染點擊的縣市
     renderListCitie(e.target.value);
+
+
+
+    // 使用 localStorage 儲存上次選擇區域
+    localStorage.setItem(this.id,e.target.value);
+    // 使用 localStorage 儲存上次選擇區域 selectedIndex 來預選
+    localStorage.setItem(this.id+'-Num',e.target.selectedIndex);
+
 })
 
 

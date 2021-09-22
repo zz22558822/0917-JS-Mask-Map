@@ -89,7 +89,7 @@ img {
 }
 
 .frame {
-  width: 376px;
+  max-width: 376px;
 }
 
 .frame .header {

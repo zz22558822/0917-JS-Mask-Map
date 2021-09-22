@@ -31,7 +31,7 @@ $text: #666666;
 }
 
 .frame{
-    width: 376px;
+    max-width: 376px;
     .header{
         display: flex;
         justify-content: space-between;
