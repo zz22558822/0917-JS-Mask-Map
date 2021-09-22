@@ -149,13 +149,12 @@ img {
   text-align: center;
   border-radius: 15px;
   /* 邊框與箭頭 */
-  /*
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   outline: none;
   border: 2px solid skyblue;
+  text-align-last: center;
 }
 
 .frame .flex .choose:hover, .frame .flex .choose-citie:hover {
