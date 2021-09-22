@@ -32,6 +32,10 @@ $text: #666666;
 
 .frame{
     max-width: 376px;
+    /* 這邊是暫時讓手機好瀏覽 等API地圖完成會再做RWD優化 */
+    @include mobile-914{
+        max-width: 100%;
+    }
     .header{
         display: flex;
         justify-content: space-between;

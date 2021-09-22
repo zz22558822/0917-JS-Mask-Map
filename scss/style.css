@@ -90,6 +90,13 @@ img {
 
 .frame {
   max-width: 376px;
+  /* 這邊是暫時讓手機好瀏覽 等API地圖完成會再做RWD優化 */
+}
+
+@media (max-width: 914px) {
+  .frame {
+    max-width: 100%;
+  }
 }
 
 .frame .header {
