@@ -205,10 +205,6 @@ function upcity() {
         selectCity += '<option value="' + allZone[i] + '">' + allZone[i] + '</option>';
     }
     document.querySelector('.choose').innerHTML = selectCity
-
-    // 讓localStorage 的縣市資料清空
-    localStorage.removeItem('citie-Num')
-    localStorage.removeItem('citie')
     //選到的城市 選染LI 縣市
     upcitie();
 }
@@ -280,6 +276,10 @@ document.querySelector('.choose').addEventListener('change',function (e) {
     //篩選城市 並渲染點擊的城市
     renderList(e.target.value);
 
+    
+    // 讓localStorage 的縣市資料清空
+    localStorage.removeItem('citie-Num')
+    localStorage.removeItem('citie')
 
 
     // 使用 localStorage 儲存上次選擇區域
