@@ -205,6 +205,10 @@ function upcity() {
         selectCity += '<option value="' + allZone[i] + '">' + allZone[i] + '</option>';
     }
     document.querySelector('.choose').innerHTML = selectCity
+
+    // 讓localStorage 的縣市資料清空
+    localStorage.removeItem('citie-Num')
+    localStorage.removeItem('citie')
     //選到的城市 選染LI 縣市
     upcitie();
 }
