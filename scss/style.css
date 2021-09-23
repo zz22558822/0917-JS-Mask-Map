@@ -64,6 +64,22 @@ img {
 /*---------------------------------------*/
 /*圖片取代文字技巧*/
 /* RWD用 */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .wrap a {
   text-decoration: none;
 }
@@ -90,6 +106,7 @@ img {
 
 .frame {
   max-width: 376px;
+  height: 100%;
   /* 這邊是暫時讓手機好瀏覽 等API地圖完成會再做RWD優化 */
 }
 
@@ -109,10 +126,27 @@ img {
   color: #FFF;
   padding: 15px;
   background: #73C0D8;
+  white-space: nowrap;
+}
+
+@media (max-width: 414px) {
+  .frame .header {
+    padding: 15px 8px;
+  }
 }
 
 .frame .header .week {
   font-size: 38px;
+}
+
+.frame .header .day-frame {
+  margin-left: 20px;
+}
+
+@media (max-width: 414px) {
+  .frame .header .day-frame {
+    margin-left: 5px;
+  }
 }
 
 .frame .header .day-frame .day {
@@ -169,19 +203,28 @@ img {
 }
 
 .frame .list {
+  height: calc(100% - (71px + 51px));
   /* 這邊是使溢出的Y軸顯示滾動條 */
   overflow-y: scroll;
   /* 隱藏 scrollbar */
-}
-
-.frame .list::-webkit-scrollbar {
-  width: 0;
+  /*
+        &::-webkit-scrollbar{
+            width: 0;
+        }
+        */
 }
 
 .frame .list li {
   padding: 15px 30px;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
           box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  background: #EEE;
+}
+
+@media (max-width: 414px) {
+  .frame .list li {
+    padding: 15px 15px;
+  }
 }
 
 .frame .list li .name {
@@ -190,10 +233,22 @@ img {
   font-weight: bold;
 }
 
+@media (max-width: 414px) {
+  .frame .list li .name {
+    margin-left: 10px;
+  }
+}
+
 .frame .list li .text {
   font-size: 16px;
   color: #666666;
   margin-top: 10px;
+}
+
+@media (max-width: 414px) {
+  .frame .list li .text {
+    margin-left: 10px;
+  }
 }
 
 .frame .list li .maskTotal {
@@ -238,5 +293,16 @@ img {
 
 .frame .list li .maskTotal .no {
   background: #A5A5A5;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 414px) {
+  #map {
+    width: 0%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

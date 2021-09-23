@@ -25,14 +25,18 @@
 
 
     <script src="js/53fb2c75c6.js" crossorigin="anonymous"></script>
+
+    <!-- 地圖框架及優化框架 -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css"></link> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css"></link> 
+
     <link rel="stylesheet" href="scss/style.css">
 
 </head>
 
 <body>
     <div class="wrap">
-        
-        <div class="map"></div>
 
         <div class="frame">
 
@@ -75,8 +79,9 @@
 
         </div>
 
-        
 
+        <div id="map" class="map"></div>
+        
 
         <div class="loading disNone">
             <img src="images/Double Ring-1.3s-200px.gif" alt="loading">
@@ -90,6 +95,9 @@
 
 
 <!--JS載入-->
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+
 <script type="text/javascript" src="js/all.js"></script>
 
 </body>

@@ -328,3 +328,49 @@ init();
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 地圖
+
+// 宣告一個 map 為 L(框架的代號).map('地圖HTML的ID',center為開始的經緯度 zoom為縮放等級)
+// 定位需要在正中間 可以使用 center: [23.684431, 120.942591] , zoom: 8
+var map = L.map('map', {
+    center: [24.0969053,120.6786456],
+    zoom: 12
+});
+
+
+// 這裡為載入圖資 addTo(map)是載入到map這個變數去
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+
+
