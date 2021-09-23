@@ -42,7 +42,7 @@ html,body{
     height: 100%;
     /* 這邊是暫時讓手機好瀏覽 等API地圖完成會再做RWD優化 */
     @include mobile-914{
-        width: 100%;
+        max-width: 100%;
     }
     .header{
         display: flex;
@@ -90,13 +90,15 @@ html,body{
             margin-bottom: 15px;
             text-align: center;
             border-radius: 15px;
-            /* 邊框與箭頭 */
+            /* 邊框與箭頭 與 手機text置中 */
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
             outline: none;
             border: 2px solid skyblue;
             text-align-last: center;
+            text-align:-moz-center;
+            text-align:-webkit-center;
             &:hover{
                 border: 4px solid salmon;
                 cursor: pointer;
