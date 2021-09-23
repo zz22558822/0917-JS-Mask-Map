@@ -113,6 +113,7 @@ html, body {
 @media (max-width: 914px) {
   .frame {
     max-width: 100%;
+    width: 100%;
   }
 }
 
