@@ -112,7 +112,7 @@ html, body {
 
 @media (max-width: 914px) {
   .frame {
-    max-width: 100%;
+    width: 100%;
   }
 }
 
@@ -302,6 +302,7 @@ html, body {
 
 @media (max-width: 767px) {
   #map {
+    width: 0%;
     display: none;
   }
 }
