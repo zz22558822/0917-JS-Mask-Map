@@ -309,4 +309,18 @@ html, body {
     display: none;
   }
 }
+
+#map .leaflet-popup-content {
+  text-align: center;
+  text-align-last: center;
+}
+
+#map .leaflet-popup-content h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#map .leaflet-popup-content p {
+  font-size: 1.2em;
+}
 /*# sourceMappingURL=style.css.map */

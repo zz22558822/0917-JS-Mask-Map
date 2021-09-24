@@ -23,6 +23,77 @@ if (localCitie == '' || localCitie == null) {
 
 
 
+
+
+
+
+
+
+// 地圖
+
+// 宣告一個 map 為 L(框架的代號).map('地圖HTML的ID',center為開始的經緯度 zoom為縮放等級)
+// 定位需要在正中間 可以使用 center: [23.684431, 120.942591] , zoom: 8
+var map = L.map('map', {
+    center: [24.0969053,120.6786456],
+    zoom: 12
+});
+
+// 這裡為載入圖資 addTo(map)是載入到map這個變數去
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// 新增一個 ICON 資訊 為redIcon 標準起手式
+var redIcon = new L.Icon({
+    // 要改圖標 iconUrl 這個就可以
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+// 灰色
+var greyIcon = new L.Icon({
+    // 要改圖標 iconUrl 這個就可以
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+// 藍色
+var blueIcon = new L.Icon({
+    // 要改圖標 iconUrl 這個就可以
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+// 橘色
+var orangeIcon = new L.Icon({
+    // 要改圖標 iconUrl 這個就可以
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+
+
+
+
+
+
+
+
+
+
 // 獲取資料
 function getData() {
     //開啟讀取動畫
@@ -136,13 +207,35 @@ function renderList(city){
             // 讓localStorage 的縣市資料清空
             localStorage.removeItem('citie-Num')
             localStorage.removeItem('citie')
-            str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+
+            // 判斷口罩數量為0 就加上 .no
+            if (data[i].properties.mask_adult == 0 && data[i].properties.mask_child == 0) {
+                str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask no">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask no">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+            }else if (data[i].properties.mask_child == 0) {
+                str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask no">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+            }else if (data[i].properties.mask_adult == 0) {
+                str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask no">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+            }else{
+                str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+            }
+
+
         }else if ( data[i].properties.county == city) {
             // 讓縣市的選項開放選取
             document.querySelector('.choose-citie').classList.remove('disabled')
             // 將區域資料累加到 citieData 當中
-            citieData.push(data[i].properties)
-            str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+            citieData.push(data[i])
+
+            // 判斷口罩數量為0 就加上 .no
+            if (data[i].properties.mask_adult == 0 && data[i].properties.mask_child == 0) {
+                str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask no">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask no">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+            }else if (data[i].properties.mask_child == 0) {
+                str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask no">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+            }else if (data[i].properties.mask_adult == 0) {
+                str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask no">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+            }else{
+                str += '<li><h3 class="name">' + data[i].properties.name + '</h3><p class="text address">' + data[i].properties.address + '</p><p class="text tel">' + data[i].properties.phone + '</p><p class="text time">更新時間 :' + data[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + data[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + data[i].properties.mask_child + '</span></p></div></li>';
+            }
         }
     }
     document.querySelector('.list').innerHTML = str;
@@ -161,15 +254,65 @@ function renderListCitie(citie){
     var str = '';
     for (var i = 0; i < citieData.length; i++) {
         if ('全部區域' == citie) {
-            str += '<li><h3 class="name">' + citieData[i].name + '</h3><p class="text address">' + citieData[i].address + '</p><p class="text tel">' + citieData[i].phone + '</p><p class="text time">更新時間 :' + citieData[i].updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + citieData[i].mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + citieData[i].mask_child + '</span></p></div></li>';
-        }else if ( citieData[i].town == citie) {
-            str += '<li><h3 class="name">' + citieData[i].name + '</h3><p class="text address">' + citieData[i].address + '</p><p class="text tel">' + citieData[i].phone + '</p><p class="text time">更新時間 :' + citieData[i].updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + citieData[i].mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + citieData[i].mask_child + '</span></p></div></li>';
+
+            // 判斷口罩數量為0 就加上 .no
+            if (citieData[i].properties.mask_adult == 0 && citieData[i].properties.mask_child == 0) {
+                str += '<li><h3 class="name">' + citieData[i].properties.name + '</h3><p class="text address">' + citieData[i].properties.address + '</p><p class="text tel">' + citieData[i].properties.phone + '</p><p class="text time">更新時間 :' + citieData[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask no">成人口罩<span>' + citieData[i].properties.mask_adult + '</span></p><p class="child-mask no">兒童口罩<span>' + citieData[i].properties.mask_child + '</span></p></div></li>';
+                markerMap(greyIcon);
+            }else if (citieData[i].properties.mask_child == 0) {
+                str += '<li><h3 class="name">' + citieData[i].properties.name + '</h3><p class="text address">' + citieData[i].properties.address + '</p><p class="text tel">' + citieData[i].properties.phone + '</p><p class="text time">更新時間 :' + citieData[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + citieData[i].properties.mask_adult + '</span></p><p class="child-mask no">兒童口罩<span>' + citieData[i].properties.mask_child + '</span></p></div></li>';
+                markerMap(orangeIcon);
+            }else if (citieData[i].properties.mask_adult == 0) {
+                str += '<li><h3 class="name">' + citieData[i].properties.name + '</h3><p class="text address">' + citieData[i].properties.address + '</p><p class="text tel">' + citieData[i].properties.phone + '</p><p class="text time">更新時間 :' + citieData[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask no">成人口罩<span>' + citieData[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + citieData[i].properties.mask_child + '</span></p></div></li>';
+                markerMap(blueIcon);
+            }else{
+                str += '<li><h3 class="name">' + citieData[i].properties.name + '</h3><p class="text address">' + citieData[i].properties.address + '</p><p class="text tel">' + citieData[i].properties.phone + '</p><p class="text time">更新時間 :' + citieData[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + citieData[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + citieData[i].properties.mask_child + '</span></p></div></li>';
+                markerMap(redIcon);
+            }
+
+        }else if ( citieData[i].properties.town == citie) {
+
+            // 判斷口罩數量為0 就加上 .no
+            if (citieData[i].properties.mask_adult == 0 && citieData[i].properties.mask_child == 0) {
+                str += '<li><h3 class="name">' + citieData[i].properties.name + '</h3><p class="text address">' + citieData[i].properties.address + '</p><p class="text tel">' + citieData[i].properties.phone + '</p><p class="text time">更新時間 :' + citieData[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask no">成人口罩<span>' + citieData[i].properties.mask_adult + '</span></p><p class="child-mask no">兒童口罩<span>' + citieData[i].properties.mask_child + '</span></p></div></li>';
+                markerMap(greyIcon);
+            }else if (citieData[i].properties.mask_child == 0) {
+                str += '<li><h3 class="name">' + citieData[i].properties.name + '</h3><p class="text address">' + citieData[i].properties.address + '</p><p class="text tel">' + citieData[i].properties.phone + '</p><p class="text time">更新時間 :' + citieData[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + citieData[i].properties.mask_adult + '</span></p><p class="child-mask no">兒童口罩<span>' + citieData[i].properties.mask_child + '</span></p></div></li>';
+                markerMap(orangeIcon);
+            }else if (citieData[i].properties.mask_adult == 0) {
+                str += '<li><h3 class="name">' + citieData[i].properties.name + '</h3><p class="text address">' + citieData[i].properties.address + '</p><p class="text tel">' + citieData[i].properties.phone + '</p><p class="text time">更新時間 :' + citieData[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask no">成人口罩<span>' + citieData[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + citieData[i].properties.mask_child + '</span></p></div></li>';
+                markerMap(blueIcon);
+            }else{
+                str += '<li><h3 class="name">' + citieData[i].properties.name + '</h3><p class="text address">' + citieData[i].properties.address + '</p><p class="text tel">' + citieData[i].properties.phone + '</p><p class="text time">更新時間 :' + citieData[i].properties.updated + '</p><div class="maskTotal"><p class="aldult-mask">成人口罩<span>' + citieData[i].properties.mask_adult + '</span></p><p class="child-mask">兒童口罩<span>' + citieData[i].properties.mask_child + '</span></p></div></li>';
+                markerMap(redIcon);
+            }
+            
         }
     }
     document.querySelector('.list').innerHTML = str;
     //關閉讀取動畫
     closeLoading();
+
+
+    // 口罩標點帶入顏色
+    function markerMap(iconColor) {
+        // 在這邊加上一個marker(定位點) , 並設定點的座標位置 , 同時用addTo將這座標放到對應的地圖map內
+        L.marker([citieData[i].geometry.coordinates[1],citieData[i].geometry.coordinates[0]], {icon: iconColor}).addTo(map)
+        // 要針對這個marker給予 HTML 標籤
+        .bindPopup('<h2>' + citieData[i].properties.name + '</h2><p>成人口罩 : <span>' + citieData[i].properties.mask_adult + '</span></p><p>兒童口罩 : <span>' + citieData[i].properties.mask_child + '</span></p>')
+        // 預設開啟
+        .openPopup();
+    }
+
+
 }
+
+
+
+
+
+
+
 
 
 
@@ -219,8 +362,8 @@ function upcitie() {
 
     // 這使用indexOf的特性 如果沒重複資料 就會判定為-1 利用這個來讓allZone 增加陣列
     for (var i = 0; i < citieData.length; i++) {
-        if (allZone.indexOf(citieData[i].town) === -1 && citieData[i].town !== '') {
-            allZone.push(citieData[i].town);
+        if (allZone.indexOf(citieData[i].properties.town) === -1 && citieData[i].properties.town !== '') {
+            allZone.push(citieData[i].properties.town);
         }
     }
     for (var i = 0; i < allZone.length ; i++) {
@@ -357,20 +500,6 @@ init();
 
 
 
-// 地圖
-
-// 宣告一個 map 為 L(框架的代號).map('地圖HTML的ID',center為開始的經緯度 zoom為縮放等級)
-// 定位需要在正中間 可以使用 center: [23.684431, 120.942591] , zoom: 8
-var map = L.map('map', {
-    center: [24.0969053,120.6786456],
-    zoom: 12
-});
-
-
-// 這裡為載入圖資 addTo(map)是載入到map這個變數去
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
 
 
 
