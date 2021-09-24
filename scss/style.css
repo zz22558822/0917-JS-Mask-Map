@@ -327,7 +327,7 @@ html, body {
 
 @media (max-width: 767px) {
   .frame .black {
-    top: 120px;
+    top: 122px;
     right: 0;
     -webkit-clip-path: none;
             clip-path: none;
