@@ -407,6 +407,30 @@ function closeLoading() {
 
 
 
+var listSwitch = 0;
+// 手機開關地圖
+document.querySelector('.black').addEventListener('click',function(e){
+    e.preventDefault();
+
+    if (listSwitch === 0) {
+        e.target.classList.remove('fa-caret-left');
+        e.target.classList.add('fa-caret-right');
+        document.querySelector('.frame').classList.add('close')
+        document.querySelector('.map').classList.add('closeMap')
+        document.querySelector('.black').classList.add('closeBtn')
+        listSwitch += 1
+    }else{
+        e.target.classList.remove('fa-caret-right');
+        e.target.classList.add('fa-caret-left');
+        document.querySelector('.frame').classList.remove('close')
+        document.querySelector('.map').classList.remove('closeMap')
+        document.querySelector('.black').classList.remove('closeBtn')
+        listSwitch = 0;
+    }
+
+})
+
+
 
 
 
