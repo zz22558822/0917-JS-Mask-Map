@@ -300,8 +300,8 @@ function renderListCitie(citie){
         L.marker([citieData[i].geometry.coordinates[1],citieData[i].geometry.coordinates[0]], {icon: iconColor}).addTo(map)
         // 要針對這個marker給予 HTML 標籤
         .bindPopup('<h2>' + citieData[i].properties.name + '</h2><p>成人口罩 : <span>' + citieData[i].properties.mask_adult + '</span></p><p>兒童口罩 : <span>' + citieData[i].properties.mask_child + '</span></p>')
-        // 預設開啟
-        .openPopup();
+/*         // 預設開啟
+        .openPopup(); */
     }
 
 
@@ -419,6 +419,7 @@ document.querySelector('.black').addEventListener('click',function(e){
         document.querySelector('.map').classList.add('closeMap')
         document.querySelector('.black').classList.add('closeBtn')
         listSwitch += 1
+        map.invalidateSize();
     }else{
         e.target.classList.remove('fa-caret-right');
         e.target.classList.add('fa-caret-left');
